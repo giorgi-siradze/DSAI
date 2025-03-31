@@ -11,6 +11,7 @@ client = Together()
 current_thesis = ""
 message_queue = queue.Queue()
 
+total_iterations = 0
 
 def ai_call(prompt: str, temperature: float = 0.8) -> str:
     stream = client.chat.completions.create(
@@ -43,9 +44,12 @@ def synthesize(thesis: str, antithesis: str) -> str:
 
 
 def synthesis_thread(initial_thesis, max_iterations):
+    global total_iterations
     current_thesis = initial_thesis
+
     for i in range(max_iterations):
-        message_queue.put({'type': 'iteration_start', 'iteration': i + 1, 'thesis': current_thesis + "\n"})
+        total_iterations += 1
+        message_queue.put({'type': 'iteration_start', 'iteration': total_iterations, 'thesis': current_thesis + "\n"})
 
         antithesis = generate_antithesis(current_thesis)
         message_queue.put({'type': 'antithesis', 'text': antithesis + "\n"})
