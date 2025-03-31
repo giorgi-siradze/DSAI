@@ -8,6 +8,8 @@ This project was originally created for GDG (Google Developer Groups) Hackathon 
 
 The goal of this project was to create a program that would automate dialectical analysis of information using Hegelian methodology.
 
+<br>
+
 ## Team Members
 
 The team consists of Giorgi Siradze (me), Badri Kapanadze and Davit Kvartskhava.
